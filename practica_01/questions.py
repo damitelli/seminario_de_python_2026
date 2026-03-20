@@ -1,22 +1,35 @@
 import random
 
-words = [
-"python",
-"programa",
-"variable",
-"funcion",
-"bucle",
-"cadena",
-"entero",
-"lista",
-]
+categorias = {
+    "Lenguajes": ["python"],
+    "Conceptos de programación": ["programa", "variable", "funcion", "bucle"],
+    "Tipos de datos": ["cadena", "entero", "lista"]
+}
 
-word = random.choice(words)
 guessed = []
 attempts = 6
 
 print("¡Bienvenido al Ahorcado!")
 print()
+
+cat = int(input( 
+'''Categorías disponibles: 
+1 - "Lenguajes" 
+2 - "Conceptos de programación"
+3 - "Tipos de datos":
+
+Elegí un número del 1 al 3 para comenzar: '''))
+
+match cat:
+    case 1:
+        cat = "Lenguajes"
+    case 2:
+        cat = "Conceptos de programación"
+    case 3:
+        cat = "Tipos de datos"
+    
+
+word = random.choice(categorias[cat])
 
 while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
