@@ -1,33 +1,49 @@
 import random
 
+ERR_MESSAGE = "\nLa entrada no es un número entero.\n"
+
 categorias = {
     "Lenguajes": ["python"],
     "Conceptos de programación": ["programa", "variable", "funcion", "bucle"],
     "Tipos de datos": ["cadena", "entero", "lista"]
 }
 
+valid_cat = False
 termino = False
+
 puntaje_total = 0
 guessed = []
 
 print("¡Bienvenido al Ahorcado!")
 print()
 
-cat = int(input( 
-'''Categorías disponibles: 
-1 - "Lenguajes" 
+text_cat = '''Categorías disponibles:
+1 - "Lenguajes"
 2 - "Conceptos de programación"
-3 - "Tipos de datos":
+3 - "Tipos de datos"
+'''
 
-Elegí un número del 1 al 3 para comenzar: '''))
-
-match cat:
-    case 1:
-        cat = "Lenguajes"
-    case 2:
-        cat = "Conceptos de programación"
-    case 3:
-        cat = "Tipos de datos"
+while not valid_cat:
+    try:
+        print(text_cat)
+        cat = int(input("Elegí un numero del 1 al 3 para comenzar: "))
+        
+        # Verifica la elección. Si es valida, reasigna la variable a la
+        # clave del diccionario correspondiente
+        if cat in range(1,4):
+            match cat:
+                case 1:
+                    cat = "Lenguajes"
+                case 2:
+                    cat = "Conceptos de programación"
+                case 3:
+                    cat = "Tipos de datos"
+            valid_cat = True
+        else:
+            print("\nLa entrada no pertenece a una categoría existente.\n")
+            
+    except ValueError:
+        print(ERR_MESSAGE)
         
 list_u = random.sample(categorias[cat],len(categorias[cat]))
 
@@ -80,19 +96,29 @@ while not termino and len(list_u) > 0:
     puntaje_total += attempts
 
     if len(list_u) > 0: 
+        valid_choice = False
         print()
-        choice = int(input("""Seguir jugando: 
-                           1 - Sí
-                           2 - No 
-                           Tu respuesta: """))
-        match choice:
-            case 1:
-                guessed.clear()
-                print("Siguiente ronda!")
-            case 2:
-                termino = True
+
+        while not valid_choice:
+            try:
+                print("Seguir jugando? \n \n 1 - Sí \n 2 - No \n")
+                choice = int(input("Tu respuesta: "))
+                
+                if choice in range(1,3):
+                    if choice == 1:
+                        guessed.clear()
+                        print("¡Siguiente ronda!")
+                    else:
+                        termino = True    
+                    valid_choice = True
+
+                else:
+                    print("Entrada invalida")
+            
+            except ValueError:
+                print(ERR_MESSAGE)
     else:
         termino = True
         print()
-        print("La categoría ya no tiene palabras, el juego ha terminado!")
+        print("¡La categoría ya no tiene palabras, el juego ha terminado!")
     print(f"Puntaje total: {puntaje_total}")      
