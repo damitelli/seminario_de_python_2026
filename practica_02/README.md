@@ -25,9 +25,11 @@ python --version
 
 ## Paso 1: Crear el Entorno Virtual
 
+
 En este paso se crea la carpeta del entorno (llamada 'env').
 
 Abrir una terminal en la carpeta del proyecto y ejecutar:
+
 
 Linux/macOS:
 ```bash
@@ -43,6 +45,7 @@ py -m venv .venv
 
 ## Paso 2: Activar el Entorno
 
+
 Linux/macOS:
 ```bash
 source .venv/bin/activate
@@ -56,9 +59,11 @@ Windows:
 ---
 
 ## Paso 3: Instalar Jupyter Lab
+
+
 Con el entorno activo, ejecutar los siguientes comandos:
 
-# 1. Asegurarse de tener pip actualizado
+### 1. Asegurarse de tener pip actualizado
 
 Linux/macOS:
 ```bash
@@ -71,7 +76,7 @@ py -m pip install --upgrade pip
 py -m pip --version
 ```
 
-# 2. Instalar Jupyter Lab
+### 2. Instalar Jupyter Lab
 
 ```bash
 pip install jupyterlab
